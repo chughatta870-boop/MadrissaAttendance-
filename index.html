@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ur-PK" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0a5c4a">
+<meta name="description" content="Madrissa students ki panch waqt namaz attendance register">
+<title>Madrissa Attendance Register</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Madrissa Register">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="app-header">
+  <div class="header-top">
+    <img src="icon-192.png" alt="Madrissa" class="header-icon">
+    <div class="header-titles">
+      <input type="text" id="madrissaName" class="madrissa-name-input" value="Madrissa Alhussainiya Chak No 123NB" placeholder="Madrissa / School Name">
+      <input type="text" id="inchargeName" class="incharge-input" placeholder="Incharge Name">
+    </div>
+  </div>
+  <div class="header-date">
+    <label for="attendanceDate">Tareekh:</label>
+    <input type="date" id="attendanceDate">
+  </div>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="attendance">Attendance</button>
+  <button class="tab-btn" data-tab="students">Students</button>
+  <button class="tab-btn" data-tab="report">Report</button>
+</nav>
+
+<main>
+
+  <!-- ===== ATTENDANCE TAB ===== -->
+  <section id="tab-attendance" class="tab-content active">
+    <div class="prayer-legend">
+      <span class="legend-item"><span class="dot green"></span> Present</span>
+      <span class="legend-item"><span class="dot red"></span> Absent</span>
+    </div>
+
+    <div class="mark-all-row">
+      <span>Sab ko ek prayer mein mark karein:</span>
+      <select id="markAllPrayer">
+        <option value="fajr">Fajr</option>
+        <option value="zuhr">Zuhr</option>
+        <option value="asr">Asr</option>
+        <option value="maghrib">Maghrib</option>
+        <option value="isha">Isha</option>
+      </select>
+      <button id="markAllPresent" class="btn small btn-green">Sab Present</button>
+      <button id="markAllAbsent" class="btn small btn-red">Sab Absent</button>
+    </div>
+
+    <div id="studentAttendanceList" class="attendance-list">
+      <!-- filled by JS -->
+    </div>
+
+    <p id="noStudentsMsg" class="empty-msg" hidden>Koi student add nahi hua. "Students" tab se student add karein.</p>
+
+    <div class="action-bar">
+      <button id="saveBtn" class="btn btn-primary">💾 Save</button>
+      <button id="shareBtn" class="btn btn-outline">📤 Share</button>
+      <button id="downloadBtn" class="btn btn-outline">⬇️ Download</button>
+    </div>
+  </section>
+
+  <!-- ===== STUDENTS TAB ===== -->
+  <section id="tab-students" class="tab-content">
+    <form id="studentForm" class="student-form">
+      <h3 id="formTitle">Naya Student Add Karein</h3>
+      <input type="hidden" id="studentId">
+      <div class="form-row">
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" required placeholder="Student ka naam">
+      </div>
+      <div class="form-row">
+        <label for="fatherName">Father's Name</label>
+        <input type="text" id="fatherName" required placeholder="Walid ka naam">
+      </div>
+      <div class="form-row">
+        <label for="rollNo">Roll No.</label>
+        <input type="text" id="rollNo" required placeholder="Roll No">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="studentSubmitBtn">➕ Add Student</button>
+        <button type="button" class="btn btn-outline" id="cancelEditBtn" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <h3 class="list-heading">Students List (<span id="studentCount">0</span>)</h3>
+    <div id="studentsList" class="students-list">
+      <!-- filled by JS -->
+    </div>
+    <p id="noStudentsMsg2" class="empty-msg" hidden>Abhi koi student nahi hai. Upar form se add karein.</p>
+  </section>
+
+  <!-- ===== REPORT TAB ===== -->
+  <section id="tab-report" class="tab-content">
+    <div class="report-controls">
+      <label for="reportMonth">Month:</label>
+      <input type="month" id="reportMonth">
+      <button id="loadReportBtn" class="btn btn-primary small">Report Dekhein</button>
+    </div>
+    <div id="reportSummary" class="report-summary"></div>
+    <div id="reportTableWrap" class="report-table-wrap"></div>
+    <div class="action-bar">
+      <button id="shareReportBtn" class="btn btn-outline">📤 Share Report</button>
+      <button id="downloadReportBtn" class="btn btn-outline">⬇️ Download Report</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>M Ijaz</p>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast" hidden></div>
+
+<!-- Install banner -->
+<div id="installBanner" class="install-banner" hidden>
+  <span>App install karein for offline use</span>
+  <button id="installBtn" class="btn small btn-primary">Install</button>
+  <button id="dismissInstallBtn" class="btn small btn-outline">✕</button>
+</div>
+
+<!-- hidden canvas for export image generation -->
+<canvas id="exportCanvas" hidden></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

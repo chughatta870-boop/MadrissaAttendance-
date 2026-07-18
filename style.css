@@ -1,0 +1,394 @@
+:root {
+  --primary: #0a5c4a;
+  --primary-dark: #073e32;
+  --gold: #d9a441;
+  --green: #1e9e56;
+  --green-dark: #157a41;
+  --red: #d9363e;
+  --red-dark: #b02a30;
+  --bg: #f4f6f5;
+  --card-bg: #ffffff;
+  --text: #1c2b28;
+  --muted: #6b7c78;
+  --border: #e0e5e3;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 70px;
+  width: 100%;
+}
+
+input, select, button, textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  padding: 14px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.header-titles {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.madrissa-name-input {
+  font-size: 15px;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 2px 0;
+  width: 100%;
+  min-width: 0;
+}
+.madrissa-name-input::placeholder { color: rgba(255,255,255,0.6); }
+.incharge-input {
+  font-size: 12.5px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.9);
+  padding: 2px 0;
+  width: 100%;
+}
+.incharge-input::placeholder { color: rgba(255,255,255,0.55); }
+.header-date {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.header-date input[type="date"] {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+}
+
+/* ===== TAB NAV ===== */
+.tab-nav {
+  display: flex;
+  background: #fff;
+  position: sticky;
+  top: 84px;
+  z-index: 19;
+  border-bottom: 1px solid var(--border);
+}
+.tab-btn {
+  flex: 1;
+  padding: 12px 4px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+}
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--gold);
+}
+
+main { padding: 14px; max-width: 720px; margin: 0 auto; width: 100%; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===== LEGEND ===== */
+.prayer-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot.green { background: var(--green); }
+.dot.red { background: var(--red); }
+
+/* ===== MARK ALL ROW ===== */
+.mark-all-row {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+.mark-all-row span { min-width: 0; word-break: break-word; }
+.mark-all-row select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  flex: 1;
+  min-width: 70px;
+}
+
+/* ===== ATTENDANCE LIST ===== */
+.attendance-list { display: flex; flex-direction: column; gap: 10px; }
+.attendance-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.attendance-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.attendance-card-name {
+  font-weight: 700;
+  font-size: 14.5px;
+}
+.attendance-card-meta {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.roll-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.prayer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.prayer-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.prayer-label { font-size: 10.5px; color: var(--muted); font-weight: 600; }
+.prayer-toggle {
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #f0f2f1;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.prayer-toggle.present {
+  background: var(--green);
+  border-color: var(--green-dark);
+  color: #fff;
+}
+.prayer-toggle.absent {
+  background: var(--red);
+  border-color: var(--red-dark);
+  color: #fff;
+}
+
+.empty-msg { text-align: center; color: var(--muted); padding: 30px 10px; font-size: 13.5px; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 11px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn.small { padding: 7px 10px; font-size: 12.5px; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-red { background: var(--red); color: #fff; }
+.btn-danger { background: var(--red); color: #fff; }
+
+.action-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.action-bar .btn { flex: 1 1 90px; min-width: 90px; }
+
+/* ===== STUDENT FORM ===== */
+.student-form {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.student-form h3 { margin: 0 0 12px; font-size: 15px; color: var(--primary); }
+.form-row { margin-bottom: 10px; }
+.form-row label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+.form-row input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+.form-actions { display: flex; gap: 8px; margin-top: 12px; }
+.form-actions .btn { flex: 1; }
+
+.list-heading { font-size: 14px; color: var(--primary); margin: 10px 0; }
+
+.students-list { display: flex; flex-direction: column; gap: 8px; }
+.student-row {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.student-row-info { font-size: 13.5px; }
+.student-row-info .sname { font-weight: 700; }
+.student-row-info .smeta { font-size: 11.5px; color: var(--muted); }
+.student-row-actions { display: flex; gap: 6px; }
+.icon-btn {
+  border: none;
+  background: #f0f2f1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.icon-btn.delete { background: #fdeaea; color: var(--red); }
+
+/* ===== REPORT ===== */
+.report-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.report-controls input[type="month"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  flex: 1;
+}
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.summary-card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: center;
+}
+.summary-card .num { font-size: 18px; font-weight: 800; color: var(--primary); }
+.summary-card .label { font-size: 10.5px; color: var(--muted); }
+
+.report-table-wrap { overflow-x: auto; }
+table.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 11.5px;
+}
+table.report-table th, table.report-table td {
+  border: 1px solid var(--border);
+  padding: 5px 6px;
+  text-align: center;
+}
+table.report-table th { background: var(--primary); color: #fff; position: sticky; top: 0; }
+table.report-table td.name-cell { text-align: left; font-weight: 600; white-space: nowrap; }
+
+/* ===== FOOTER / WATERMARK ===== */
+.app-footer {
+  text-align: center;
+  padding: 14px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-dark);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ===== INSTALL BANNER ===== */
+.install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  z-index: 30;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+.install-banner span { flex: 1; }
+
+@media (max-width: 380px) {
+  .prayer-label { font-size: 9px; }
+  .prayer-toggle { font-size: 9px; padding: 7px 0; }
+}
